@@ -7,17 +7,11 @@ public class Help {
     public static void printHelp() {
         List<String> lines = Arrays.asList(
                 "Usage:",
-                "  ggpipe -t task [options] ...",
+                "  ggpipe -t task [-o output] file1, file2, ...",
                 "  ggpipe -h",
-                "Input Options:",
-                fcmd("-i file1, file2, ...", "Input image data files (required)"),
-//                fcmd("-e file1, file2, ...","Input config files"),
                 "Output Options: (one or more required)",
                 fcmd("-o file","Output image file"),
-                fcmd("-p file","Output palette file"),
-                fcmd("-f format","Output format"),
                 "Task Options:",
-//                fcmd("-s file","System definition file"),
                 fcmd("-t task","Task to perform (required)"),
                 fcmd("--palette","Equivalent to -t palette")
 

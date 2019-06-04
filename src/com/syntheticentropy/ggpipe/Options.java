@@ -48,13 +48,11 @@ public class Options {
 
     private Options(ArgumentGroup args, boolean invalid,
                     List<String> inputFiles,
-                    String outputImageFile, String outputPaletteFile, String outputFormat, String task) {
+                    String outputImageFile, String task) {
         arguments = args;
         invalidArguments = invalid;
         this.inputFiles = inputFiles;
         this.outputImageFile = outputImageFile;
-        this.outputPaletteFile = outputPaletteFile;
-        this.outputFormat = outputFormat;
         this.task = task;
     }
     public static boolean init(String args[]) {
@@ -70,27 +68,20 @@ public class Options {
         }
 
         if(group.hasFlag("-h") || group.hasFlag("--help")) {
-            singleton = new Options(group, false, null, null, null, null, null);
+            singleton = new Options(group, false, null, null, null);
         }else{
-            invalid|= group.assertArgumentExists("-i");
-            invalid|= group.assertArgumentHasAtLeastOneValue("-i");
-
             invalid|= group.assertArgumentHasOneValue("-o");
-            invalid|= group.assertArgumentHasOneValue("-p");
-            invalid|= group.assertArgumentHasOneValue("-f");
 
             invalid|= group.assertArgumentHasOneValue("-t");
 
-            invalid|= group.assertArgumentHasNoValues("--");
+            invalid|= group.assertArgumentHasAtLeastOneValue("--");
 
-            List<String> inputFiles = group.getArgumentValues("-i").orElseGet(ArrayList::new);
+            List<String> inputFiles = group.getArgumentValues("--").orElseGet(ArrayList::new);
             String outputImageFile = group.getArgumentValue("-o").orElseGet(()->null);
-            String outputPaletteFile = group.getArgumentValue("-p").orElseGet(()->null);
-            String format = group.getArgumentValue("-f").orElseGet(()->null);
             String task = group.getArgumentValue("-t").orElseGet(()->"");
 
             //failure to parse: return false;
-            singleton = new Options(group, invalid, inputFiles, outputImageFile, outputPaletteFile, format, task);
+            singleton = new Options(group, invalid, inputFiles, outputImageFile, task);
         }
 
         return invalid;

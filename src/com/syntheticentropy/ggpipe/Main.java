@@ -33,10 +33,9 @@ public class Main {
 
         //If -o is provided, output to that file
         Optional<String> outputImageFile = Optional.ofNullable(Options.get().getOutputImageFile());
-        Optional<String> outputPaletteFile = Optional.ofNullable(Options.get().getOutputPaletteFile());
         PrintStream imageOut = outputImageFile.map(Main::createPrintStream).orElse(System.out);
-        PrintStream paletteOut = outputImageFile.map(Main::createPrintStream).orElse(System.out);
-
+        //Inputs are always provided
+        PipeCanvas pipeCanvas = new PipeCanvas(Options.get().getInputFiles());
 
         //Tasks:
         //Palette - find palettes from all of the input images
@@ -45,8 +44,7 @@ public class Main {
         String task = arguments.getArgumentValue("-t").get();
         Optional<TaskLink> link = taskLinks.stream().filter(l->l.getFlag().equalsIgnoreCase(task)).findFirst();
         if(link.isPresent()){
-            link.get().getHandlerFactory().get().exportImage(null, imageOut);
-            link.get().getHandlerFactory().get().exportPalette(null, paletteOut);
+            link.get().getHandlerFactory().get().work(arguments, pipeCanvas, imageOut);
             return;
         }else{
             abort("Unknown task "+task);
