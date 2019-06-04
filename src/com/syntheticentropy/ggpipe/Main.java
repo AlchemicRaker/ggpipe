@@ -1,5 +1,6 @@
 package com.syntheticentropy.ggpipe;
 
+import com.syntheticentropy.ggpipe.task.GreyTask;
 import com.syntheticentropy.ggpipe.task.PaletteTask;
 
 import java.io.FileNotFoundException;
@@ -13,7 +14,8 @@ public class Main {
 
     public static boolean testMode = false;
     private static List<TaskLink> taskLinks = Arrays.asList(
-            new TaskLink("palette", PaletteTask::new)
+            new TaskLink("get-palette", PaletteTask::new),
+            new TaskLink("reduce-palette", GreyTask::new)
     );
 
     public static void main(String[] args) {
@@ -31,7 +33,7 @@ public class Main {
             return;
         }
 
-        ColorModel.init(arguments.getArgumentValue("--color-model").orElse("colormodel.txt"));
+        ColorModel.init(arguments.getArgumentValue("-color-model").orElse("colormodel.txt"));
 
         //If -o is provided, output to that file
         Optional<String> outputImageFile = Optional.ofNullable(Options.get().getOutputImageFile());

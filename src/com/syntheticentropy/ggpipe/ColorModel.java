@@ -56,6 +56,10 @@ public class ColorModel {
         }
     }
 
+    public ColorEntry getEntryForNes(int nes) {
+        return entries.stream().filter(e->e.nes==nes).findFirst().orElse(entries.get(0));
+    }
+
     public Byte getNearestNesColorFromRgb(int rgb) {
         int red =   (rgb >> 16) & 0xFF;
         int green = (rgb >>  8) & 0xFF;
@@ -95,6 +99,10 @@ public class ColorModel {
             int blue =  (rgb      ) & 0xFF;
             BiFunction<Integer, Integer, Integer> sq = (a,b)->(a-b)*(a-b);
             return sq.apply(this.red, red) + sq.apply(this.green, green) + sq.apply(this.blue, blue);
+        }
+
+        public int getRGB() {
+            return (red << 16) | (green << 8) | blue;
         }
 
         public int getRed() {

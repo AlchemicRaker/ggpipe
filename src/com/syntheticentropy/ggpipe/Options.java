@@ -76,7 +76,9 @@ public class Options {
 
             invalid|= group.assertArgumentHasOneValue("-bg");
 
-            invalid|= group.assertArgumentHasOneValue("--color-model");
+            invalid|= group.assertArgumentHasOneValue("-palette");
+
+            invalid|= group.assertArgumentHasOneValue("-color-model");
 
             invalid|= group.assertArgumentHasAtLeastOneValue("--");
 
@@ -109,13 +111,13 @@ public class Options {
                     String flag = null;
                     String value = null;
                     // add this as value for another flag
-                    if(arg.equalsIgnoreCase("--palette")){
+                    if(arg.equalsIgnoreCase("--get-palette")){
                         flag = "-t";
-                        value = "palette";
+                        value = "get-palette";
                     }
-                    if(arg.equalsIgnoreCase("--map")){
+                    if(arg.equalsIgnoreCase("--reduce-palette")){
                         flag = "-t";
-                        value = "map";
+                        value = "reduce-palette";
                     }
                     if(flag != null){
                         Function<String,Predicate<Argument>> matchFlag = f -> ag->ag.getFlag().equalsIgnoreCase(f);
