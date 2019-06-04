@@ -7,10 +7,8 @@ public class Help {
     public static void printHelp() {
         List<String> lines = Arrays.asList(
                 "Usage:",
-                "  ggpipe -t task [-o output] file1, file2, ...",
+                "  ggpipe -t task [-o outputFile] [--color-model colorFile] file1, file2, ...",
                 "  ggpipe -h",
-                "Output Options: (one or more required)",
-                fcmd("-o file","Output image file"),
                 "Task Options:",
                 fcmd("-t task","Task to perform (required)"),
                 fcmd("--palette","Equivalent to -t palette")

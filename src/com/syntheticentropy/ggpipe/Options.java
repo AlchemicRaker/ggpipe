@@ -74,6 +74,10 @@ public class Options {
 
             invalid|= group.assertArgumentHasOneValue("-t");
 
+            invalid|= group.assertArgumentHasOneValue("-bg");
+
+            invalid|= group.assertArgumentHasOneValue("--color-model");
+
             invalid|= group.assertArgumentHasAtLeastOneValue("--");
 
             List<String> inputFiles = group.getArgumentValues("--").orElseGet(ArrayList::new);

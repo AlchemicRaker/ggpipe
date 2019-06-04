@@ -86,15 +86,15 @@ public class PipeCanvas {
         return -1;
     }
 
-    public Set<Integer> tilePalette(int tileIndex) {
+    public Set<Byte> tilePalette(int tileIndex) {
         BufferedImage image = images.get(getImageIndexFromTileIndex(tileIndex));
         int topLeftX = getXFromTileIndex(tileIndex);
         int topLeftY = getYFromTileIndex(tileIndex);
 //        System.out.println("Checking "+topLeftX+", "+topLeftY);
-        Set<Integer> colorsSet = new HashSet<Integer>();
+        Set<Byte> colorsSet = new HashSet<Byte>();
         for (int x = 0; x < TILE_WIDTH; x++) {
             for (int y = 0; y < TILE_HEIGHT; y++) {
-                colorsSet.add(image.getRGB(topLeftX+x,topLeftY+y));
+                colorsSet.add(ColorModel.get().getNearestNesColorFromRgb(image.getRGB(topLeftX+x,topLeftY+y)));
 //                System.out.println("Palette["+tileIndex+"]="+colorsSet.stream().map(i->""+i).reduce((a,b)->a+","+b).orElse("n/a"));
             }
         }

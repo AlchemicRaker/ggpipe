@@ -31,6 +31,8 @@ public class Main {
             return;
         }
 
+        ColorModel.init(arguments.getArgumentValue("--color-model").orElse("colormodel.txt"));
+
         //If -o is provided, output to that file
         Optional<String> outputImageFile = Optional.ofNullable(Options.get().getOutputImageFile());
         PrintStream imageOut = outputImageFile.map(Main::createPrintStream).orElse(System.out);
