@@ -119,6 +119,10 @@ public class Options {
                         flag = "-t";
                         value = "reduce-palette";
                     }
+                    if(arg.equalsIgnoreCase("--binary")){
+                        flag = "-t";
+                        value = "binary";
+                    }
                     if(flag != null){
                         Function<String,Predicate<Argument>> matchFlag = f -> ag->ag.getFlag().equalsIgnoreCase(f);
                         Optional<Argument> argument = result.stream().filter(matchFlag.apply(flag)).findFirst();

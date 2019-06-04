@@ -76,6 +76,22 @@ public class ColorModel {
         return entries.get(nearestIndex).nes;
     }
 
+    public Byte getNearestIndexColorFromRgb(int rgb) {
+        int red =   (rgb >> 16) & 0xFF;
+        int green = (rgb >>  8) & 0xFF;
+        int blue =  (rgb      ) & 0xFF;
+        byte nearestIndex = 0;
+        int nearestDistance = entries.get(0).distanceTo(red, green, blue);
+        for (byte i = 1; i < 4; i++) {
+            int distance = entries.get(i).distanceTo(red, green, blue);
+            if(distance < nearestDistance){
+                nearestDistance = distance;
+                nearestIndex = i;
+            }
+        }
+        return nearestIndex;
+    }
+
     public static class ColorEntry {
         int red;
         int green;

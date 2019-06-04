@@ -34,6 +34,12 @@ $ ggpipe mirai_senshi_clip.png -o mirai_grey.png --reduce-palette -palette 3F,21
 Provide a full palette (`-palette`), an input image, and an output image (`-o`).  The output is an image, where all tiles' palettes are stripped.  The first four colors in the color model are used as the "reduced" palette.  By default this is black, dark grey, light grey, and white.
 
 
+## Generate CHR data
+```
+$ ggpipe t1g.png t2g.png t3g.png t4g.png --binary -o tset.chr
+(tset.chr is created)
+```
 
+Provide any number of reduced palette images.  The output is in NES CHR format, with 8 bytes of the low bits, followed by 8 bytes of the high bits of each 8x8 tile.
 
 

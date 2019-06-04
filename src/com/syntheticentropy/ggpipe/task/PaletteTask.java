@@ -33,6 +33,7 @@ public class PaletteTask implements ITaskHandler {
                 tilePalette.remove(paletteBackground);
                 if(tilePalette.size() > 3) {
                     Main.abort("Too many colors within a single tile.");
+                    return;
                 }
                 int bestDifference = -1;
                 int bestPalette = -1;
@@ -69,6 +70,7 @@ public class PaletteTask implements ITaskHandler {
             }catch(Exception e){
 //                System.out.println("Wot " + tileIndex);
                 Main.abort("Problem encountered "+e.getMessage());
+                return;
             }
         }
 //        System.out.println("Palette["+tileIndex+"]="+colorsSet.stream().map(i->""+i).reduce((a,b)->a+","+b).orElse("n/a"));

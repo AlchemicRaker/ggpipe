@@ -1,5 +1,6 @@
 package com.syntheticentropy.ggpipe;
 
+import com.syntheticentropy.ggpipe.task.BinaryTask;
 import com.syntheticentropy.ggpipe.task.GreyTask;
 import com.syntheticentropy.ggpipe.task.PaletteTask;
 
@@ -15,7 +16,8 @@ public class Main {
     public static boolean testMode = false;
     private static List<TaskLink> taskLinks = Arrays.asList(
             new TaskLink("get-palette", PaletteTask::new),
-            new TaskLink("reduce-palette", GreyTask::new)
+            new TaskLink("reduce-palette", GreyTask::new),
+            new TaskLink("binary", BinaryTask::new)
     );
 
     public static void main(String[] args) {

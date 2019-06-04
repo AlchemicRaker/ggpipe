@@ -102,6 +102,19 @@ public class PipeCanvas {
         return colorsSet;
     }
 
+    public List<Short> tileShorts(int tileIndex) {
+        BufferedImage image = images.get(getImageIndexFromTileIndex(tileIndex));
+        int topLeftX = getXFromTileIndex(tileIndex);
+        int topLeftY = getYFromTileIndex(tileIndex);
+        List<Short> shorts = new ArrayList<>();
+        for (int x = 0; x < TILE_WIDTH; x++) {
+            for (int y = 0; y < TILE_HEIGHT; y++) {
+//                colorsSet.add(ColorModel.get().getNearestNesColorFromRgb(image.getRGB(topLeftX+x,topLeftY+y)));
+            }
+        }
+        return shorts;
+    }
+
     public List<BufferedImage> getImages() {
         return images;
     }
