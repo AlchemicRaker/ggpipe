@@ -53,7 +53,8 @@ public class PaletteTask implements ITaskHandler {
                 }
                 if(bestDifference == -1 && palettes.size() >= 4) {
                     //couldn't fit it into an existing palette & no palettes left
-                    Main.abort("Too many palettes detected");
+                    Main.abort("Too many palettes detected in image "+imageIn.getImageIndexFromTileIndex(tileIndex)
+                            +" at "+imageIn.getXFromTileIndex(tileIndex)+","+imageIn.getYFromTileIndex(tileIndex));
                     return;
                 } else if(bestDifference == -1 || bestPalette == -1) {
                     //couldn't fit it into an existing palette, insert new palette
@@ -69,7 +70,9 @@ public class PaletteTask implements ITaskHandler {
                 }
             }catch(Exception e){
 //                System.out.println("Wot " + tileIndex);
-                Main.abort("Problem encountered "+e.getMessage());
+                e.printStackTrace();
+                Main.abort("General problem in "+imageIn.getImageIndexFromTileIndex(tileIndex)
+                        +" at "+imageIn.getXFromTileIndex(tileIndex)+","+imageIn.getYFromTileIndex(tileIndex)+" "+e.getMessage());
                 return;
             }
         }
